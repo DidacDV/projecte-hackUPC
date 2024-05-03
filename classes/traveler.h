@@ -1,16 +1,14 @@
 #include <iostream>
-#include<traveler.h>
 #include <string>
 
 using namespace std;
 
-
 class traveler {
     private:
-    string name;
-    
-    public:
+        string name; 
 
-    void getName() 
-    
+    public:
+        // Pre: True
+        // Post: Return name of traveler
+        string getName() const;
 };

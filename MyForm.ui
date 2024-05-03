@@ -20,7 +20,42 @@
   <property name="inputMethodHints">
    <set>Qt::ImhNone</set>
   </property>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>760</y>
+     <width>135</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </widget>
+  <widget class="QWebView" name="webView">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>50</y>
+     <width>611</width>
+     <height>571</height>
+    </rect>
+   </property>
+   <property name="url">
+    <url>
+     <string>https://consent.google.com/m?continue=https://www.google.com/maps&amp;gl=ES&amp;m=0&amp;pc=m&amp;uxe=eomtm&amp;cm=2&amp;hl=es&amp;src=1</string>
+    </url>
+   </property>
+  </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header location="global">QtWebKitWidgets/QWebView</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

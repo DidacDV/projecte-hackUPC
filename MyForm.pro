@@ -4,4 +4,4 @@ DEPENDPATH += .
 INCLUDEPATH += .
 HEADERS += MyForm.h 
 FORMS += MyForm.ui
-SOURCES += main.cpp MyForm.cpp 
+SOURCES += main.cc MyForm.cc

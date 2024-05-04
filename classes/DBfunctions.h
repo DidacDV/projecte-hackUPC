@@ -12,7 +12,6 @@ using namespace std;
     char *query;
     vector<string> querys;
 
-   void displayPositions();
    
    void insertPositions(const string& cityName);
 
@@ -32,8 +31,8 @@ using namespace std;
     
     void get_traveller(const string& name);
     //obatinPosition updates all of the latitudes and longitudes of the cities inside the DB
-    void updatePositions(const string& param);;
+    void updatePositions();;
 
-    
+    void displayPositions();
   };
  

@@ -1,6 +1,6 @@
 #include<traveler.h>
 
-string traveler::getName() const {
+string Traveler::getName() const {
     return name; 
 }
 

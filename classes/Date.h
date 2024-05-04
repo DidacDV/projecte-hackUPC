@@ -1,7 +1,8 @@
 #ifndef DATE_H
 #define DATE_H
-
 #include <string> // Para usar std::string
+using namespace std;
+
 
 class Date {
 private:
@@ -12,8 +13,9 @@ private:
     bool isValidDate(int d, int m, int y); // Método para validar fechas
 
 public:
-    Date(const std::string& dateStr); // Constructor que toma una fecha en formato dd/mm/yyyy
-    std::string toString() const;     // Retorna la fecha en formato dd/mm/yyyy
+    Date(int d,int m, int y); // Constructor que toma una fecha en formato dd/mm/yyyy
+    
+    string toString() const;     // Retorna la fecha en formato dd/mm/yyyy
 };
 
 #endif // DATE_H

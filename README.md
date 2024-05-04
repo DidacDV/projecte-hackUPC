@@ -2,7 +2,6 @@
 
 Project done at HackUPC with the purpose of building an app to interconnect people given his data (in this case a data set of multiple travelers) using multiple algorithms.
 
-
 ## Team
 
 - **<a href="https://github.com/AndresLaptes" target="_blank">@AndresLaptes</a>**
@@ -25,3 +24,5 @@ Project done at HackUPC with the purpose of building an app to interconnect peop
 
 
   We use a dataset provided as an example by TravelPerk  With the **libpq-fe** library that allows us to use a low       level API of PostgreSQL we created a class to get the data and set it to our variables. It is also so that we can      give the database the latitude and longitude to each city without doing it in standard code, and being able to         display info on the map more quickly.
+
+**!!!Not quite finished**  (problems with hosting the database and bringing it outside the localhost)

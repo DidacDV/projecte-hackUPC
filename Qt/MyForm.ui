@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MyForm</class>
+ <widget class="QWidget" name="MyForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Hackathon</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../../../home/andres69/Descargas/Logo.jpeg</normaloff>../../../../home/andres69/Descargas/Logo.jpeg</iconset>
+  </property>
+  <property name="inputMethodHints">
+   <set>Qt::ImhNone</set>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <property name="spacing">
+           <number>4</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Nombre</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="MyQLineEdit" name="Nombre"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,0">
+          <property name="spacing">
+           <number>2</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Fechas</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="MyQDateEdit" name="FechaS">
+            <property name="minimumDateTime">
+             <datetime>
+              <hour>0</hour>
+              <minute>0</minute>
+              <second>0</second>
+              <year>2000</year>
+              <month>9</month>
+              <day>14</day>
+             </datetime>
+            </property>
+            <property name="maximumDate">
+             <date>
+              <year>2100</year>
+              <month>12</month>
+              <day>31</day>
+             </date>
+            </property>
+            <property name="date">
+             <date>
+              <year>2024</year>
+              <month>1</month>
+              <day>1</day>
+             </date>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="MyQDateEdit" name="FechaL">
+            <property name="maximumDateTime">
+             <datetime>
+              <hour>23</hour>
+              <minute>59</minute>
+              <second>59</second>
+              <year>2100</year>
+              <month>12</month>
+              <day>31</day>
+             </datetime>
+            </property>
+            <property name="minimumDateTime">
+             <datetime>
+              <hour>0</hour>
+              <minute>0</minute>
+              <second>0</second>
+              <year>2000</year>
+              <month>9</month>
+              <day>14</day>
+             </datetime>
+            </property>
+            <property name="date">
+             <date>
+              <year>2024</year>
+              <month>1</month>
+              <day>1</day>
+             </date>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="spacing">
+           <number>8</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Ciudades</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="MyQLineEdit" name="CiudadO"/>
+          </item>
+          <item>
+           <widget class="MyQLineEdit" name="CiudadD"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="text">
+         <string>Enter</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="MyQTableWidget" name="Tabla">
+        <column>
+         <property name="text">
+          <string>Nombre</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Ciudad Origen</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Ciudad Destino</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Fecha Salida</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Fecha Llegada</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>Exit</string>
+          </property>
+          <property name="shortcut">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyQLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header location="global">MyQLineEdit.h</header>
+   <slots>
+    <signal>envio(QString,QString)</signal>
+    <slot>recibe_INP()</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>MyQTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header location="global">MyQTableWidget.h</header>
+   <slots>
+    <slot>rec(QString,QString)</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>MyQDateEdit</class>
+   <extends>QDateEdit</extends>
+   <header location="global">MyQDateEdit.h</header>
+   <slots>
+    <signal>envio(QString,QString)</signal>
+    <slot>fechaSelect()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MyForm</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>707</x>
+     <y>774</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>653</x>
+     <y>795</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>Nombre</receiver>
+   <slot>recibe_INP()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>213</x>
+     <y>66</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>177</x>
+     <y>31</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>CiudadO</receiver>
+   <slot>recibe_INP()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>673</x>
+     <y>65</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>577</x>
+     <y>34</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Nombre</sender>
+   <signal>envio(QString,QString)</signal>
+   <receiver>Tabla</receiver>
+   <slot>rec(QString,QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>156</x>
+     <y>31</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>165</x>
+     <y>231</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CiudadO</sender>
+   <signal>envio(QString,QString)</signal>
+   <receiver>Tabla</receiver>
+   <slot>rec(QString,QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>624</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>732</x>
+     <y>128</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>FechaS</receiver>
+   <slot>fechaSelect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>519</x>
+     <y>66</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>308</x>
+     <y>30</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CiudadD</sender>
+   <signal>envio(QString,QString)</signal>
+   <receiver>Tabla</receiver>
+   <slot>rec(QString,QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>745</x>
+     <y>33</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>634</x>
+     <y>161</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>FechaL</receiver>
+   <slot>fechaSelect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>415</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>372</x>
+     <y>23</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>FechaS</sender>
+   <signal>envio(QString,QString)</signal>
+   <receiver>Tabla</receiver>
+   <slot>rec(QString,QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>296</x>
+     <y>32</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>416</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>FechaL</sender>
+   <signal>envio(QString,QString)</signal>
+   <receiver>Tabla</receiver>
+   <slot>rec(QString,QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>388</x>
+     <y>32</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>416</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>CiudadD</receiver>
+   <slot>recibe_INP()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>66</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>720</x>
+     <y>32</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

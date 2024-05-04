@@ -12,6 +12,5 @@ class MyQWidget: public QWidget {
     public slots:
 
     private:
-        MyQWidget *actual;
-        QLineEdit *nombre;
+        
 };

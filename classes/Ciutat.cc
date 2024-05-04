@@ -4,7 +4,7 @@ Ciutat::Ciutat(string nom){
     name = nom; 
 }
 
-string Ciutat::getNom() const {
+string Ciutat::getName() const {
     return name;
 }
 

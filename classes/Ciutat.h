@@ -15,7 +15,7 @@ class Ciutat {
     public:
     Ciutat(string name); // Constructora
 
-    string getNom() const; //Return name;
+    string getName() const; //Return name;
 
     float getLatitude() const;
 

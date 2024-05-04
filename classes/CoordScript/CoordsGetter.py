@@ -21,10 +21,6 @@ def  obt_city(cityName):
             else:
                 print(f"{latitude}")
                 print(f"{longitude}")
-                path = "./CoordScript/coords.txt"
-                with open(path, 'w') as file:
-                    file.write(f"{latitude}\n")
-                    file.write(f"{longitude}\n")
         else: print("No data known")
     else:
         print("REQUEST ERROR:",response.status_code, response.text)

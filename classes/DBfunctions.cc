@@ -117,11 +117,11 @@ void DBfunctions::get_traveller(const string& name){
     closeConnection();
 }
 
-void DBfunctions::updatePositions(const string& param){
+void DBfunctions::updatePositions(){
     getConnection();
-    string consult = "SELECT " + param + " FROM cities";
+    string consult = "SELECT cityname FROM cities";
     
-    PGresult *result = PQexecParams(connection, consult.c_str(), 0, NULL, NULL, NULL, NULL, 0);
+    PGresult *result = PQexec(connection, consult.c_str());
 
     if (PQresultStatus(result) != PGRES_TUPLES_OK) {
         fprintf(stderr, "Error al ejecutar la consulta: %s\n", PQerrorMessage(connection));
@@ -135,7 +135,7 @@ void DBfunctions::updatePositions(const string& param){
         for (int i = 0; i < num_cities; i++) {
             string city = PQgetvalue(result, i, 0);
             cout << "Updating position for city: " << city << endl; 
-            insertPositions(city);
+            insertPositions(PQgetvalue(result, i, 0));
         }
     } else {
         printf("No hay ciudades que tratar.\n");
@@ -149,12 +149,8 @@ void DBfunctions::updatePositions(const string& param){
 void DBfunctions::insertPositions(const string& cityName){
     getConnection();
 
-
-
-    float latitude = 4;
-
-
-    float longitude = 5;
+    float latitude = 2;
+    float longitude = 3;
 
     //Setup of the query
     std::string consult = "UPDATE cities SET latitude = $1, longitude = $2 WHERE cityname = $3";
@@ -164,7 +160,7 @@ void DBfunctions::insertPositions(const string& cityName){
     const char *parametros[3] = {std::to_string(latitude).c_str(), std::to_string(longitude).c_str(), cityName.c_str()};
     
     //Execution of the query
-    PGresult *result = PQexecParams(connection, consult.c_str(), 3, NULL, NULL, NULL, NULL, 0);
+    PGresult *result = PQexecParams(connection, consult.c_str(), 3, NULL, parametros, NULL, NULL, 0);
 
     //Check for errors
      if (PQresultStatus(result) != PGRES_COMMAND_OK) {
@@ -182,5 +178,32 @@ void DBfunctions::insertPositions(const string& cityName){
 }
 
 void DBfunctions::displayPositions(){
+    getConnection();
+    string consult = "SELECT cityname, latitude, longitude FROM cities";
     
+    PGresult *result = PQexec(connection, consult.c_str());
+
+    if (PQresultStatus(result) != PGRES_TUPLES_OK) {
+        fprintf(stderr, "Error al ejecutar la consulta: %s\n", PQerrorMessage(connection));
+        PQclear(result);
+        PQfinish(connection);
+        exit(1);
+    }
+
+    int num_positions = PQntuples(result);
+    if (num_positions > 0) {
+        for (int i = 0; i < num_positions; i++) {
+            string city = PQgetvalue(result, i, 0);
+            cout << "Displaying position for city: " << city << endl; 
+            string latitude=PQgetvalue(result, i, 1);
+            string longitude=PQgetvalue(result, i, 2);
+            cout << "Whose latitude is: " << latitude << " and longitude: " << longitude << endl; 
+        }
+    } else {
+        printf("No hay ciudades que tratar.\n");
+    }
+
+    // Free resources
+    PQclear(result);
+    closeConnection();
 }

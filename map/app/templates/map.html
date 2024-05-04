@@ -25,7 +25,7 @@
             <button type="submit">Agregar Marcador</button>
         </form>
         
-        <!-- Formulario con un botón para ejecutar el script -->
+        <!-- Formulario con un botón para ejecutar un script adicional -->
         <form method="POST">
             <button id="Reset" type="submit" name="ejecutar_boton">Reset</button>
         </form>
@@ -41,13 +41,33 @@
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
+        // Función para calcular la distancia entre dos coordenadas
+        function getDistance(lat1, lng1, lat2, lng2) {
+            const R = 6371; // Radio de la Tierra en kilómetros
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLng = (lng2 - lng1) * Math.PI / 180;
+            const a = 
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLng / 2) * Math.sin(dLng / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const distance = R * c;  // Distancia en kilómetros
+            return distance * 1000;  // Convertir a metros
+        }
+
+        // Lista para almacenar todos los círculos
+        var circles = [];
+
+        // Lista para guardar los pares de círculos que se tocan
+        var touchingCircles = [];
+
         // Agregar marcadores y círculos para cada coordenada
         var coordinates = {{ coordinates | tojson }};  // Convertir a JSON para JavaScript
         coordinates.forEach(function(coord) {
             var marker = L.marker([coord.lat, coord.lng]).addTo(map)
                 .bindPopup('Latitud: ' + coord.lat + ', Longitud: ' + coord.lng);
 
-            // Crear un círculo con radio personalizado
+            // Crear un círculo con un radio inicial
             var circle = L.circle([coord.lat, coord.lng], {
                 radius: 500000,  // Valor por defecto
                 color: 'blue',
@@ -55,16 +75,44 @@
                 fillOpacity: 0.1
             }).addTo(map);
 
-            // Actualizar el radio del círculo cuando se cambia el valor de la barra deslizante
+            circles.push(circle);
+
+            // Escucha el cambio en la barra deslizante para actualizar el radio del círculo
             document.getElementById('radioRange').addEventListener('input', function() {
                 var radioValue = document.getElementById('radioRange').value;
                 document.getElementById('radioValue').innerHTML = radioValue;
                 circle.setRadius(parseInt(radioValue));
             });
         });
+
+        // Calcular cuáles círculos se tocan
+        for (let i = 0; i < circles.length; i++) {
+            for (let j = i + 1; j < circles.length; j++) {
+                const distance = getDistance(
+                    circles[i].getLatLng().lat,
+                    circles[i].getLatLng().lng,
+                    circles[j].getLatLng().lat,
+                    circles[j].getLatLng().lng
+                );
+
+                const radiusSum = circles[i].getRadius() + circles[j].getRadius();
+
+                if (distance <= radiusSum) {
+                    touchingCircles.push({
+                        circle1: i,
+                        circle2: j,
+                        distance: distance
+                    });
+                }
+            }
+        }
+
+        // Mostrar los resultados en la consola o en el DOM
+        console.log('Círculos que se tocan:', touchingCircles);
     </script>
 </body>
 </html>
+
 
 
 

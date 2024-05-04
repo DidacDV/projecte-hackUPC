@@ -1,3 +1,6 @@
+#ifndef TRAVELER_H
+#define TRAVELER_H
+
 #include <iostream>
 #include <string>
 
@@ -12,3 +15,5 @@ class traveler {
         // Post: Return name of traveler
         string getName() const;
 };
+
+#endif

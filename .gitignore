@@ -1,2 +1,5 @@
 *.json
 /.vscode
+config.py
+config.file
+__pycache__

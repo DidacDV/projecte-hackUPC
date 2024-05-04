@@ -2,24 +2,30 @@
 #define CIUTAT_H
 
 #include <iostream>
+#include <stdio.h>
 #include<string>
 using namespace std;
 
 class Ciutat {
     private:
-    float Longitud;
-    float Altitud;
-    string nombre;
+    float Longitude;
+    float Latitude;
+    string name;
 
     public:
-    Ciutat(string nom); // Constructora
+    Ciutat(string name); // Constructora
 
-    string getNom() const; //Return name;
+    string getName() const; //Return name;
 
-    void addLongitud(float f); //Add longitud
+    float getLatitude() const;
 
-    void addAltitud(float f); //Add altitud
+    float getLongitude() const;
 
+    void addLongitude(float f); //Add Longitude
+
+    void addLatitude(float f); //Add Altitude
+
+    int configAtrib(); //returns -1 if gone wrong, >-1 otherwise
 
 };
 

@@ -13,8 +13,8 @@ class Travel {
     Traveler& persona;
     Date& data_ini;
     Ciutat& origen;
-    Date data_fin;
-    Ciutat destino;
+    Date& data_fin;
+    Ciutat& destino;
 
     public:
 

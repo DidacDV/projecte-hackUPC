@@ -2,11 +2,11 @@
 
 // Constructor para Travel con inicializaciones explícitas usando lista de inicialización
 Travel::Travel(Traveler& p, Date& d, Ciutat& c)
-    : persona(p),  // Inicializar referencia
-      data_ini(d),  // Inicializar referencia
-      origen(c),  // Inicializar referencia
-      data_fin(d),  // Inicializar data_fin para evitar errores
-      destino(c)  // Inicializar destino
+    : persona(p), 
+      data_ini(d),  
+      origen(c),  
+      data_fin(d), 
+      destino(c) 
 {
     // El cuerpo del constructor está vacío porque las inicializaciones se hacen arriba
 }

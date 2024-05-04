@@ -6,7 +6,7 @@
  }
 
 bool DBfunctions::getConnection() {
-    connection = PQconnectdb("host = localhost port = 5432 dbname = hackupc user=postgres password = postgres");
+    connection = PQconnectdb("host = 172.20.10.3 port = 5432 dbname = hackupc user=postgres password = postgres");
     switch (PQstatus(connection))
         {
         case CONNECTION_STARTED:

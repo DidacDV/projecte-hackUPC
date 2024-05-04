@@ -137,7 +137,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QLineEdit" name="CIudad"/>
+           <widget class="MyQLineEdit" name="Ciudad"/>
           </item>
          </layout>
         </item>
@@ -151,7 +151,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QTableWidget" name="tableWidget">
+       <widget class="MyQTableWidget" name="Tabla">
         <column>
          <property name="text">
           <string>Nombre</string>
@@ -207,7 +207,16 @@
    <extends>QLineEdit</extends>
    <header location="global">MyQLineEdit.h</header>
    <slots>
+    <signal>envio(QString,QString)</signal>
     <slot>recibe_INP()</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>MyQTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header location="global">MyQTableWidget.h</header>
+   <slots>
+    <slot>rec(QString,QString)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -242,6 +251,54 @@
     <hint type="destinationlabel">
      <x>210</x>
      <y>31</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>Ciudad</receiver>
+   <slot>recibe_INP()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>673</x>
+     <y>65</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>681</x>
+     <y>34</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Nombre</sender>
+   <signal>envio(QString,QString)</signal>
+   <receiver>Tabla</receiver>
+   <slot>rec(QString,QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>156</x>
+     <y>31</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>165</x>
+     <y>231</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Ciudad</sender>
+   <signal>envio(QString,QString)</signal>
+   <receiver>Tabla</receiver>
+   <slot>rec(QString,QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>728</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>732</x>
+     <y>128</y>
     </hint>
    </hints>
   </connection>

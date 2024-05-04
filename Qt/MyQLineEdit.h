@@ -10,10 +10,10 @@ class MyQLineEdit: public QLineEdit {
         void recibe_INP();
         void enter();
     signals:
-        void envio(bool a, QString name, QString texto);
+        void envio(QString name, QString texto);
         void returnPressed(const QString &);
     private:
         bool txt;
         QString Name;
-        QString texto;
+        QString Texto;
 };

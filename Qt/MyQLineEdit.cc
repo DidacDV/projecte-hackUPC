@@ -11,12 +11,15 @@ MyQLineEdit::MyQLineEdit(QWidget *parent) {
 
 void MyQLineEdit::enter() {
     if (Name == "vacio") Name = this->objectName();
-    cout << "Tengo nombre" << endl;
     emit returnPressed(text());
-    texto = text();
+    Texto = text();
 }
 
 void MyQLineEdit::recibe_INP() {
-    if (not text().isEmpty()) txt = true;
+    if (not text().isEmpty()) {
+        txt = true;
+        Texto = text();
+    }
     if (Name == "vacio") Name = this->objectName();
+    if (txt) emit envio(Name, Texto);
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapa Interactivo</title>
+    <!-- Incluir los estilos de Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Incluir el script de Leaflet -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <!-- Contenedor para el mapa -->
+    <div id="map" style="width: 100%; height: 800px;"></div>
+
+    <!-- Formulario para agregar nuevas coordenadas -->
+    <div>
+        <form id="coordenadasForm" method="POST" action="/">
+            <label for="lat">Latitud:</label>
+            <input type="text" name="lat" id="lat" placeholder="Ingrese la latitud" required>
+            <label for="lng">Longitud:</label>
+            <input type="text" name="lng" id="lng" placeholder="Ingrese la longitud" required>
+            <input type="range" id="radioRange" name="radio" min="100" max="100000000" step="100" value="1000">
+            <output for="radioRange" id="radioValue">1000</output>
+            <button type="submit">Agregar Marcador</button>
+        </form>
+        
+        <!-- Formulario con un botón para ejecutar el script -->
+        <form method="POST">
+            <button id="Reset" type="submit" name="ejecutar_boton">Reset</button>
+        </form>
+    </div>
+
+    <!-- Código JavaScript para inicializar el mapa -->
+    <script>
+        // Crear el mapa centrado en una coordenada específica
+        var map = L.map('map').setView([51.505, -0.09], 3);  // Centro por defecto
+
+        // Agregar un mapa base desde OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Agregar marcadores y círculos para cada coordenada
+        var coordinates = {{ coordinates | tojson }};  // Convertir a JSON para JavaScript
+        coordinates.forEach(function(coord) {
+            var marker = L.marker([coord.lat, coord.lng]).addTo(map)
+                .bindPopup('Latitud: ' + coord.lat + ', Longitud: ' + coord.lng);
+
+            // Crear un círculo con radio personalizado
+            var circle = L.circle([coord.lat, coord.lng], {
+                radius: 500000,  // Valor por defecto
+                color: 'blue',
+                fillColor: '#0000ff',
+                fillOpacity: 0.01
+            }).addTo(map);
+
+            // Actualizar el radio del círculo cuando se cambia el valor de la barra deslizante
+            document.getElementById('radioRange').addEventListener('input', function() {
+                var radioValue = document.getElementById('radioRange').value;
+                document.getElementById('radioValue').innerHTML = radioValue;
+                circle.setRadius(parseInt(radioValue));
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,3 +3,4 @@
 string traveler::getName() const {
     return name; 
 }
+

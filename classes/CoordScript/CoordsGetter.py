@@ -1,6 +1,9 @@
 import requests
-import json
+import sys
 import config
+
+def usage():
+    print("Correct usage: python CoordsGetter.py CityName")
 
 def  obt_city(cityName):
     paramsIn = {'city': cityName}
@@ -16,7 +19,9 @@ def  obt_city(cityName):
             if latitude is None and longitude is None:
                 print("Coords Unknown")
             else:
-                path = "coords.txt"
+                print(f"{latitude}")
+                print(f"{longitude}")
+                path = "./CoordScript/coords.txt"
                 with open(path, 'w') as file:
                     file.write(f"{latitude}\n")
                     file.write(f"{longitude}\n")
@@ -25,4 +30,9 @@ def  obt_city(cityName):
         print("REQUEST ERROR:",response.status_code, response.text)
 
 
-obt_city('London')
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        usage()
+    else: 
+        cityName = sys.argv[1]
+        obt_city(cityName)

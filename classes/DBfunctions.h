@@ -12,7 +12,9 @@ using namespace std;
     char *query;
     vector<string> querys;
 
-    void init_querys();
+   void displayPositions();
+   
+   void insertPositions(const string& cityName);
 
  public:
     int nRows = 0;
@@ -23,7 +25,15 @@ using namespace std;
     void closeConnection();
     //no need to insert, we alr have data
     bool getDataToTrip();
- 
- 
- };
+   
+    void init_DB();
+    void init_cities();
+    void init_travelers();
+    
+    void get_traveller(const string& name);
+    //obatinPosition updates all of the latitudes and longitudes of the cities inside the DB
+    void updatePositions(const string& param);;
+
+    
+  };
  

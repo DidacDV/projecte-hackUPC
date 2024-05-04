@@ -5,10 +5,13 @@ using namespace std;
 class MyQTableWidget:public QTableWidget {
     Q_OBJECT
     private:
-        bool col[3];
+        bool col[5];
         QString Nombre;
-        QString Fecha;
-        QString Ciudad;
+        QString FechaS;
+        QString CiudadD;
+        QString CiudadO;
+        QString FechaL;
+
     public:
         MyQTableWidget(QWidget *parents);
 

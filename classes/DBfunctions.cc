@@ -186,18 +186,36 @@ void DBfunctions::displayPositions(){
         PQfinish(connection);
         exit(1);
     }
-
+    
+    std::ofstream archivo("../map/coordinates.txt",std::ios::in | std::ios::out);
+    if (!archivo.is_open()) {
+                std::cerr << "Error al abrir el archivo." << std::endl;
+    }
+    archivo.seekp(-1, std::ios::end);
     int num_positions = PQntuples(result);
     if (num_positions > 0) {
         for (int i = 0; i < num_positions; i++) {
+
             string city = PQgetvalue(result, i, 0);
             cout << "Displaying position for city: " << city << endl; 
             float latitude=atof(PQgetvalue(result, i, 1));
             float longitude=atof(PQgetvalue(result, i, 2));
+            // LLAMADA AL MAPA
+
+            // Escribe las coordenadas en el archivo
+            if(i == num_positions - 1 ) archivo << "{\"lat\": " << latitude << ", \"lng\": " << longitude << "}]";
+            else archivo << "{\"lat\": " << latitude << ", \"lng\": " << longitude << "}, ";
+
+        // Cierra el archivo
+    
+
+            //
         }
     } else {
         printf("No hay ciudades que tratar.\n");
     }
+
+    archivo.close();   
 
     // Free resources
     PQclear(result);

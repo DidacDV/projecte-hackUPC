@@ -13,6 +13,7 @@ using namespace std;
     PGconn *connection;
     char *query;
     vector<string> querys;
+    int current_trip = 939;
 
    
    void insertPositions(const string& cityName);
@@ -36,5 +37,6 @@ using namespace std;
     void updatePositions();;
 
     void displayPositions();
+    void insertTrip(const string& travelerName, const string& destinationCity, const string& arrivalCity, const string& arrivalDate, const string& departureDate);
   };
  

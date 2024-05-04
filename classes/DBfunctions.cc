@@ -144,6 +144,32 @@ void DBfunctions::updatePositions(){
     closeConnection();
 }
 
+void DBfunctions::insertTrip(const string& travelerName, const string& departureCity, const string& arrivalCity, const string& returnDate, const string& departureDate){
+    getConnection();
+   
+    //Setup of the query
+    std::string consult = "INSERT INTO TRIP (tripid,travellername,departuredate,returndate,departurecity,arrivalcity) values{$1,$2,$3,$4,$5,$6;";
+
+    ++current_trip;
+    //Parameters of the query.
+    const char *parametros[6] = {std::to_string(current_trip).c_str(), travelerName.c_str(), departureDate.c_str(),returnDate.c_str(),departureCity.c_str(),arrivalCity.c_str()};
+    
+    //Execution of the query
+    PGresult *result = PQexecParams(connection, consult.c_str(), 6, NULL, parametros, NULL, NULL, 0);
+
+    //Check for errors
+     if (PQresultStatus(result) != PGRES_COMMAND_OK) {
+        fprintf(stderr, "Error al ejecutar la consulta: %s\n", PQerrorMessage(connection));
+        PQclear(result);
+        PQfinish(connection);
+        exit(1);
+    }
+
+    // Free resources
+    PQclear(result);
+    closeConnection();
+}
+
 void DBfunctions::insertPositions(const string& cityName){
     getConnection();
     Ciutat c(cityName);

@@ -1,12 +1,12 @@
 #include <iostream>
-#include <libpq-fe.h>
+#include "libpq-fe.h"
 #include <vector>
 using namespace std;
 
  class DBfunctions
  {
  private:
-    int querys = 0;
+    int nquerys = 0;
     bool error = false;
     PGconn *connection;
     char *query;

@@ -2,5 +2,9 @@
 
 int main() {
     DBfunctions a;
-    cout << a.getConnection() << endl;
+    cout << "Inicializando base de datos" << endl;
+    a.init_DB();
+    cout << "Actualizando latitudes y longitudes..." << endl;
+    a.updatePositions();
+    a.displayPositions();
 }

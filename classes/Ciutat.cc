@@ -1,4 +1,4 @@
-#include <Ciutat.h>
+#include "Ciutat.h"
 
 Ciutat::Ciutat(string nom){
     name = nom; 

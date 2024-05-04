@@ -25,10 +25,9 @@ bool DBfunctions::getConnection() {
         if (PQstatus(connection) != CONNECTION_OK) {
             cout << "Connection error: " << PQerrorMessage(connection) << endl;
             PQfinish(connection); //close conection incase of failure
-            return false;
+            exit;
         }
         else {
-            cout << "Connection succesful" << endl;
             return true;
         }
     return false;
@@ -52,14 +51,13 @@ void DBfunctions::init_cities() {
                        ")";
     PGresult *res = PQexec(connection, sql);
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        std::cerr << "Error al crear la tabla: " << PQresultErrorMessage(res) << std::endl;
+        std::cerr  << PQresultErrorMessage(res) << std::endl;
         PQclear(res);
         PQfinish(connection);
         exit;
+    } else {
+        std::cout << "Tabla de viajeros creada correctamente." << std::endl;
     }
-
-    std::cout << "Tabla de viajeros creada correctamente." << std::endl;
-
     string consult = "insert into cities (cityname) select distinct arrivalcity from trip;";
     
     PGresult *result = PQexecParams(connection, consult.c_str(), 0, NULL, NULL, NULL, NULL, 0);
@@ -73,13 +71,13 @@ void DBfunctions::init_travelers() {
                        ")";
     PGresult *res = PQexec(connection, sql);
     if (PQresultStatus(res) != PGRES_COMMAND_OK) {
-        std::cerr << "Error al crear la tabla: " << PQresultErrorMessage(res) << std::endl;
+        std::cerr << PQresultErrorMessage(res) << std::endl;
         PQclear(res);
         PQfinish(connection);
         exit;
+    } else {
+        std::cout << "Tabla de viajeros creada correctamente." << std::endl;
     }
-
-    std::cout << "Tabla de viajeros creada correctamente." << std::endl;
     string consult = "insert into traveler (name) select travellername from trip;";
     
     PGresult *result = PQexecParams(connection, consult.c_str(), 0, NULL, NULL, NULL, NULL, 0);
@@ -148,10 +146,11 @@ void DBfunctions::updatePositions(){
 
 void DBfunctions::insertPositions(const string& cityName){
     getConnection();
-
-    float latitude = 2;
-    float longitude = 3;
-
+    Ciutat c(cityName);
+    c.configAtrib();
+    float latitude = c.getLatitude();
+    float longitude = c.getLongitude();
+    
     //Setup of the query
     std::string consult = "UPDATE cities SET latitude = $1, longitude = $2 WHERE cityname = $3";
 
@@ -168,8 +167,6 @@ void DBfunctions::insertPositions(const string& cityName){
         PQclear(result);
         PQfinish(connection);
         exit(1);
-    } else {
-        printf("Se han actualizado correctamente los valores de latitud y longitud para la ciudad en la tabla 'cities'.\n");
     }
 
     // Free resources
@@ -195,9 +192,8 @@ void DBfunctions::displayPositions(){
         for (int i = 0; i < num_positions; i++) {
             string city = PQgetvalue(result, i, 0);
             cout << "Displaying position for city: " << city << endl; 
-            string latitude=PQgetvalue(result, i, 1);
-            string longitude=PQgetvalue(result, i, 2);
-            cout << "Whose latitude is: " << latitude << " and longitude: " << longitude << endl; 
+            float latitude=atof(PQgetvalue(result, i, 1));
+            float longitude=atof(PQgetvalue(result, i, 2));
         }
     } else {
         printf("No hay ciudades que tratar.\n");

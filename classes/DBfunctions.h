@@ -1,5 +1,6 @@
 #include <iostream>
 #include "libpq-fe.h"
+#include "Ciutat.h"
 #include <vector>
 using namespace std;
 

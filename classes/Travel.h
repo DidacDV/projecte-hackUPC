@@ -13,20 +13,22 @@ class Travel {
     Traveler& persona;
     Date& data_ini;
     Ciutat& origen;
-    Date& data_fin;
-    Ciutat& destino;
+    Date data_fin;
+    Ciutat destino;
 
     public:
 
-    Travel(Traveler p, Date d, Ciutat c); // Constructora
+    Travel(Traveler &p, Date &d, Ciutat &c); // Constructora
 
-    void addDate_fin(Date d); //Asigna data fin
+    void addDate_fin(const Date& d); //Asigna data fin
 
-    void addCiutat_destino(Ciutat c); //Asigna ciutat destino
+    void addCiutat_destino(const Ciutat& c); //Asigna ciutat destino
 
 
     
 };
+
+#endif
 
 
 

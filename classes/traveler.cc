@@ -1,13 +1,6 @@
-#include <iostream>
-#include <string>
+#include<traveler.h>
 
-using namespace std;
+string Traveler::getName() const {
+    return name; 
+}
 
-
-class traveler {
-    private:
-    string name;
-    
-    public:
-    
-};
